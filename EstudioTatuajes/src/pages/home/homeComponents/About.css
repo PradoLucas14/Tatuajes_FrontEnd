@@ -1,0 +1,65 @@
+.About{
+    height: auto;
+    background-color: black;
+    color: #fff;
+    padding: 9%
+}
+.containerAbout{
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+.columna1, .columna2 {
+    flex: 1;
+}  
+.columna1{
+    border: 1px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.imagenColumna1 {
+    width: 98%;
+    height: 97%;
+    object-fit: cover;
+    border: 1px solid #fff;
+}
+.tituloAbout{
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    margin-top: 40px;
+}
+.aboutDescripcion{
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+.locationAbout{
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.horarioAbout{
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+@media (max-width: 991px) {
+    .containerAbout {
+      flex-direction: column;
+    }
+    .columna1, .columna2 {
+      width: 100%; 
+    }
+    .columna1{
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+    .imagenColumna1{
+        margin: 5px;
+    }
+    .tituloAbout{
+        margin-top: 0px;
+    }
+}
+  

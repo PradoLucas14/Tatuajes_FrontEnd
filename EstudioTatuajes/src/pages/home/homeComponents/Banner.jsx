@@ -17,7 +17,9 @@ function Banner() {
             Transformamos tus ideas en arte permanente, creando diseños únicos que cuentan tu historia a través de la piel. 
             ¡Descubre tu próximo tatuaje!
             </p>
-            <button className='bannerButton'>Registrate</button>
+            <button className='bannerButton'>
+              <p>Registrate</p>
+            </button>
             <div className='redesBanner'>
                 <button className='RedBanner'>
                     <i className="fab fa-instagram"></i><p>Instagram</p>
