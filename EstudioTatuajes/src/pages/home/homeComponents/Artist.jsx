@@ -1,4 +1,5 @@
 import React from 'react'
+import ArtistCarousel from "./ArtistCarousel"
 import "./Artist.css"
 
 function Artist() {
@@ -15,6 +16,9 @@ function Artist() {
                     tatuadores combinan creatividad y técnica para transformar ideas en obras de arte sobre la piel, 
                     siempre garantizando un trabajo de la más alta calidad.
                 </p>
+            </div>
+            <div className="artistCarousel">
+                <ArtistCarousel/>
             </div>
         </div>
     )

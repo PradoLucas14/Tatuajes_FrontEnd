@@ -1,0 +1,29 @@
+{
+    "empleados": [
+      {
+        "id": 1,
+        "nombre": "Juan Pérez",
+        "especialidad": "Gótico y Blackout",
+        "imagen": "https://i.pinimg.com/564x/0c/31/a7/0c31a76d392e0af26c0e7702a32f2dfa.jpg"
+      },
+      {
+        "id": 2,
+        "nombre": "María López",
+        "especialidad": "Minimalismo y Oriental",
+        "imagen": "https://e0.pxfuel.com/wallpapers/730/777/desktop-wallpaper-tattoo-girl-background-tattos.jpg"
+      },
+      {
+        "id": 3,
+        "nombre": "Ana García",
+        "especialidad": "Blackwork",
+        "imagen": "https://img.freepik.com/fotos-premium/joven-hermosa-intrincados-tatuajes-espiral-rorschach-que-cubren-su-pecho-tatuajes_1132132-3108.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1722729600&semt=ais_hybrid"
+      },
+      {
+        "id": 4,
+        "nombre": "Carlos Ruiz",
+        "especialidad": "Linework y Geometría",
+        "imagen": "https://img.freepik.com/fotos-premium/chico-modelo-tatuajes-brazo-camiseta-negra_640207-14.jpg"
+      }
+    ]
+  }
+  
