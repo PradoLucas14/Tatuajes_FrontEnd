@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Carousel from 'react-multi-carousel';
 import axios from 'axios';
 import 'react-multi-carousel/lib/styles.css';
+import "./ArtistCarousel.css"
 
 const responsive = {
   desktop: {
@@ -33,12 +34,15 @@ const CarouselComponent = () => {
   }, []);
 
   return (
-    <Carousel responsive={responsive}>
+    <Carousel responsive={responsive} className='carousel'>
       {empleados.map((empleado) => (
         <div className="card" key={empleado.id}>
           <img src={empleado.imagen} alt={empleado.nombre} className="card-img" />
-          <h3>{empleado.nombre}</h3>
-          <p>{empleado.especialidad}</p>
+          <div className="overlayImg">
+            <h3>{empleado.nombre}</h3>
+            <p>{empleado.especialidad}</p>
+            <button className="btn-overlay">Ver Portafolio</button>
+          </div>
         </div>
       ))}
     </Carousel>
