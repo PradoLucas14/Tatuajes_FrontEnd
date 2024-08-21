@@ -1,0 +1,27 @@
+.Artists{
+    height: auto;
+    padding: 9%;
+    background-color: black;
+}
+.artistTitulo{
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin-bottom: 30px;
+}
+.artistTitulo h4{
+    color: #fff;
+    font-size: 2.4rem;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px #fff solid;
+}
+.descripArtist{
+    text-align: center;
+}
+.descripArtist p{
+    color: #fff;
+    font-size: 1.2rem;
+}
