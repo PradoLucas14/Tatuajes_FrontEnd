@@ -1,0 +1,40 @@
+.BannerGalery {
+    position: relative;
+    height: 80vh; /* Ajusta esta altura según tus necesidades */
+    overflow: hidden;
+    padding: 9%;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}  
+.BannerGalery img {
+    width: auto;
+    height: 100%;
+    object-fit: cover;
+}  
+.overlayGalery {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.tituloGaleryT{
+    border-bottom: 1px solid #fff;
+    margin-bottom: 40px;
+    text-align: center;
+    width: 350px;
+}
+.tituloGaleryT h4{
+    font-size: 2.4rem;
+    color: #fff;
+}
+.btnContainer{
+    margin-top: 40px;
+}
