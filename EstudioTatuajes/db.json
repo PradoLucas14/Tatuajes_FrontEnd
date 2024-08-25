@@ -24,6 +24,20 @@
         "especialidad": "Linework y Geometría",
         "imagen": "https://img.freepik.com/fotos-premium/chico-modelo-tatuajes-brazo-camiseta-negra_640207-14.jpg"
       }
+    ],
+    "proyectos": [
+      { "id": 1, "image": "https://img.freepik.com/fotos-premium/mujer-tatuada-sombrero-vestido-blanco-sobre-fondo-negro_948135-1587.jpg", "alt": "Proyecto 1" },
+      { "id": 2, "image": "https://img.freepik.com/fotos-premium/tatuador-trabajando-maquina-tatuajes-su-estudio_1308157-62979.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1724112000&semt=ais_hybrid", "alt": "Proyecto 2" },
+      { "id": 3, "image": "https://img.freepik.com/fotos-premium/hombre-hipster-elegante-tatuajes-cuerpo-brazos-mano-hombre-joven-tatuaggios-cuerpo-contra-fondo-negro-primer-plano-diseno-elegante-blanco-negro_158001-12876.jpg", "alt": "Proyecto 3" },
+      { "id": 4, "image": "https://img.freepik.com/foto-gratis/hermosa-mujer-tatuada-exuda-confianza-generada-ia_188544-47711.jpg", "alt": "Proyecto 4" },
+      { "id": 5, "image": "https://img.freepik.com/fotos-premium/imagen-hermosa-mujer-tatuajes-estilo-realismo-monocromatico-oscuro-romantico_688149-2643.jpg", "alt": "Proyecto 5" },
+      { "id": 6, "image": "https://e1.pxfuel.com/desktop-wallpaper/761/28/desktop-wallpaper-girl-woman-model-tattoo-brunette-black-and-white-tattoos-female-b-w-hannah-snowdon-section-%D0%B4%D0%B5%D0%B2%D1%83%D1%88%D0%BA%D0%B8.jpg", "alt": "Proyecto 6" },
+      { "id": 7, "image": "https://i.pinimg.com/originals/43/b8/a7/43b8a7949d6579dae13e7aea8cdf877d.jpg", "alt": "Proyecto 7" },
+      { "id": 8, "image": "https://i.pinimg.com/736x/6a/db/0a/6adb0ac29f2f2aa9e354f617937d0620.jpg", "alt": "Proyecto 8" },
+      { "id": 9, "image": "https://img.freepik.com/fotos-premium/tatuaje-geometrico-blanco-negro-antebrazo-persona_1187703-128713.jpg", "alt": "Proyecto 9" },
+      { "id": 10, "image": "https://i.pinimg.com/564x/80/f4/98/80f498165c586f5b9d78dcd354b041b5.jpg", "alt": "Proyecto 10" },
+      { "id": 11, "image": "https://images.pexels.com/photos/19083899/pexels-photo-19083899/free-photo-of-blanco-y-negro-mujer-en-pie-de-pie.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500", "alt": "Proyecto 11" },
+      { "id": 12, "image": "https://significadodetatuajes.net/wp-content/uploads/2019/06/alas-en-la-espalda-hombre.jpg", "alt": "Proyecto 12" }
     ]
   }
   

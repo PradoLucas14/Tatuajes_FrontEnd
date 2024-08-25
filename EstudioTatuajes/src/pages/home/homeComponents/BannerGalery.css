@@ -1,40 +1,24 @@
-.BannerGalery {
-    position: relative;
-    height: 80vh; /* Ajusta esta altura según tus necesidades */
+/* Carousel.css */
+.carousel-container {
     overflow: hidden;
-    padding: 9%;
+    height: auto;
     background-color: black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}  
-.BannerGalery img {
-    width: auto;
-    height: 100%;
-    object-fit: cover;
-}  
-.overlayGalery {
-    position: absolute;
-    top: 0;
-    left: 0;
+    padding: 9%;
+}
+
+.carousel-image {
     width: 100%;
-    height: 100%;
+    height: 100%; /* Puedes ajustar la altura según tus necesidades */
+    object-fit: cover; /* Esto asegura que las imágenes se ajusten bien dentro del contenedor */
+}
+
+.slick-slide {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
 }
-.tituloGaleryT{
-    border-bottom: 1px solid #fff;
-    margin-bottom: 40px;
-    text-align: center;
-    width: 350px;
-}
-.tituloGaleryT h4{
-    font-size: 2.4rem;
-    color: #fff;
-}
-.btnContainer{
-    margin-top: 40px;
+.imgContainerGalery{
+    height: 500px;
+    width: 300px;
+    overflow: hidden;
 }
