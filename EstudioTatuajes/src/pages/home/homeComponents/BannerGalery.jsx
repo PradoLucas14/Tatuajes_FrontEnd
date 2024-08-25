@@ -63,13 +63,18 @@ const Carousel = () => {
           <div className="galeryTituloHome">
             <h4>NUESTROS PROYECTOS</h4>
           </div>
-            <Slider {...settings}>
-                {images.map(image => (
-                    <div key={image.id} className='imgContainerGalery'>
-                        <img src={image.image} alt={image.alt} className="carousel-image" />
-                    </div>
-                ))}
-            </Slider>
+          <Slider {...settings}>
+              {images.map(image => (
+                  <div key={image.id} className='imgContainerGalery'>
+                      <img src={image.image} alt={image.alt} className="carousel-image" />
+                  </div>
+              ))}
+          </Slider>
+          <div className="btnGaleryContainer">
+            <button className='bannerButton'>
+              <p>Ver más</p>
+            </button>
+          </div>
         </div>
     );
 };

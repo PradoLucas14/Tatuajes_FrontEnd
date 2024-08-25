@@ -42,7 +42,6 @@
     font-size: 1.2rem;
     font-weight: bold;
     margin-left: 2px;
-    margin-bottom: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -66,6 +65,7 @@
 }
 .redesBanner{
     display: flex;
+    margin-top: 30px;
 }
 .RedBanner{
     margin-left: 2px;
