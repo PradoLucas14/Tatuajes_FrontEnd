@@ -60,6 +60,9 @@ const Carousel = () => {
 
     return (
         <div className="carousel-container">
+          <div className="galeryTituloHome">
+            <h4>Nuestros Proyectos</h4>
+          </div>
             <Slider {...settings}>
                 {images.map(image => (
                     <div key={image.id} className='imgContainerGalery'>
