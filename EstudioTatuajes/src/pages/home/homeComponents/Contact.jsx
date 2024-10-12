@@ -64,39 +64,45 @@ function Contact() {
         </div>
       </div>
       <div className="columnContact column2Contact">
-        <h2>Contacto</h2>
-        <form onSubmit={handleSubmit} className="contact-form">
-          <label htmlFor="name">Nombre:</label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
+      <form onSubmit={handleSubmit} className="contact-form" autoComplete="off">
+        <h2>Contactanos</h2>
+        <label htmlFor="name">Nombre:</label>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          value={formData.name}
+          onChange={handleChange}
+          placeholder="Escribe tu nombre"
+          required
+          autoComplete="off"
+        />
 
-          <label htmlFor="email">Correo Electrónico:</label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
+        <label htmlFor="email">Correo Electrónico:</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          value={formData.email}
+          onChange={handleChange}
+          placeholder="Escribe tu correo electrónico"
+          required
+          autoComplete="off"
+        />
 
-          <label htmlFor="message">Mensaje:</label>
-          <textarea
-            name="message"
-            id="message"
-            value={formData.message}
-            onChange={handleChange}
-            required
-          />
+        <label htmlFor="message">Mensaje:</label>
+        <textarea
+          name="message"
+          id="message"
+          value={formData.message}
+          onChange={handleChange}
+          placeholder="Escribe tu mensaje"
+          required
+          autoComplete="off"
+        />
 
-          <button type="submit">Enviar</button>
-        </form>
+        <button type="submit">Enviar</button>
+      </form>
       </div>
     </div>
   );
