@@ -1,84 +1,127 @@
 .contact-container {
     display: flex;
-    flex-wrap: wrap;
-    padding: 5% 0 0 0;
-    height: 90vh;
-    background-color: black;
-}
-.contact-column {
-    flex: 1;
-    min-width: 300px;
-}  
-.column-one {
-    background-color: #f0f0f0;
-    background-image: url("../../../assets/img/imgHome/contactBanner.jpg");
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 80vh; /* Para que llene toda la altura de la ventana */
+  }
+  
+  .columnContact {
+    flex: 1; /* Hace que ambas columnas tengan el mismo ancho */
+    box-sizing: border-box;
+  }
+  
+  .column1Contact {
+    background-image: url("../../../assets/img/imgHome/img-contact1.jpg");
     background-size: cover;
     background-position: center;
+    height: 100%;
+    width: 100%;
     position: relative;
-}
-.overlayColumn-one{
+  }
+  .column1ContactOverlay{
     position: absolute;
     width: 100%;
     height: 100%;
-    background: linear-gradient( to left , black ,transparent , transparent , transparent ,transparent , transparent);
-}
-.column-two {
-    background-color: transparent;
+    background-color: rgba(0, 0, 0, 0.3);
+    background: linear-gradient(to top , black , rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2), black),
+    linear-gradient(to left , black , rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2), black);
+    background-blend-mode: multiply; /* Combina los degradados */
+  }
+  .column2Contact {
+    background-color: black;
+    height: 100%;
+    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
-} 
-.form{
-    border: 1px solid red;
-    min-width: 350px;
-    width: 500px;
-} 
-h2 {
-    margin-bottom: 20px;
-    color: #333;
-}
-.form-group {
-    margin-bottom: 15px;
-}  
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    color: #333;
-}  
-.form-group input,
-.form-group textarea {
-    width: 90%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-}  
-.form-group textarea {
-    resize: none; 
-}  
-.form-group .error-message {
-    color: red;
-    font-size: 14px;
-    margin-top: 5px;
-}  
-button[type="submit"] {
-    padding: 10px 20px;
-    background-color: #333;
+    justify-content: center;
+  }
+  .column2Contact h2{
     color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-}
-  
-  button[type="submit"]:hover {
-    background-color: #555;
+  }
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    min-width: 400px;
+    max-width: 600px;
+    border: #fff 1px solid;
+    padding: 30px;
+    margin: 10px;
+    background-color: black;
   }
   
-  @media (max-width: 991px) {
+  .contact-form label {
+    margin-top: 10px;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .contact-form input {
+    margin-top: 5px;
+    width: 100%;
+    width: 94% !important;
+    padding: 10px;
+    border: 1px solid #fff;
+    background-color: transparent;
+    color: #fff;
+    font-weight: bold;
+    font-family: "Playfair Display", serif;
+  }
+  .contact-form input:focus {
+    border: 1px solid #bf930d; /* Cambia el borde a rojo cuando esté seleccionado */
+    outline: none; /* Quita el borde por defecto del navegador */
+  }
+  .contact-form textarea {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    width: 94%;    /* Ancho al 100% del contenedor */
+    height: 200px;  /* Altura fija */
+    resize: none;   /* Deshabilita la opción de redimensionar el textarea */
+    overflow-y: auto;  /* Muestra scroll vertical si el contenido excede la altura */
+    border: 1px solid #fff;
+    background-color: transparent;
+    color: #fff;
+    font-weight: bold;
+    font-family: "Playfair Display", serif;
+  } 
+  .contact-form textarea:focus {
+    border: 1px solid #bf930d; /* Cambia el borde a rojo cuando esté seleccionado */
+    outline: none; /* Quita el borde por defecto del navegador */
+  }
+  .contact-form button {
+    padding: 10px;
+    background-color: black;
+    border: 2px solid #fff !important;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    font-family: "Playfair Display", serif;
+    font-weight: bold;
+  }
+  
+  .contact-form button:hover {
+    background-color: #fff;
+    color: black;
+  }
+  @media screen and (max-width: 768px) {
     .contact-container {
-      flex-direction: column-reverse;
+      flex-direction: column;
+      position: relative;
+    }
+  
+    .column2 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: lightcoral;
+      opacity: 0.8; /* Para dar la sensación de superposición */
+    }
+  
+    .column1 {
+      z-index: -1; /* Para que quede detrás de la columna 2 */
     }
   }
   

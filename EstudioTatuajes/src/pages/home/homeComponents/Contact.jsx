@@ -9,101 +9,92 @@ function Contact() {
     message: ''
   });
 
-  const [errors, setErrors] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-
+  // Manejar cambios en el formulario
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-
-    if (value.length < 8) {
-      setErrors({ ...errors, [name]: 'Este campo debe tener al menos 8 caracteres.' });
-    } else {
-      setErrors({ ...errors, [name]: '' });
-    }
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
   };
 
+  // Manejar el envío del formulario
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    let formValid = true;
-    const newErrors = {};
-
-    for (const key in formData) {
-      if (formData[key].length < 8) {
-        newErrors[key] = 'Este campo debe tener al menos 8 caracteres.';
-        formValid = false;
-      }
-    }
-
-    setErrors(newErrors);
-
-    if (formValid) {
+    // Validar que todos los campos tengan al menos 6 caracteres
+    if (formData.name.length < 6 || formData.email.length < 6 || formData.message.length < 6) {
       Swal.fire({
-        title: 'Formulario enviado',
-        text: 'Gracias por contactarnos. Nos pondremos en contacto contigo pronto.',
-        icon: 'success',
-        confirmButtonText: 'Aceptar',
-        background: '#000',
-        color: '#fff',
-        confirmButtonColor: '#333'
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Todos los campos deben tener al menos 6 caracteres.'
       });
-
-      // Limpiar el formulario
-      setFormData({ name: '', email: '', message: '' });
+      return;
     }
+
+    // Validar que todos los campos estén completos
+    if (!formData.name || !formData.email || !formData.message) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Por favor, complete todos los campos del formulario.'
+      });
+      return;
+    }
+
+    // Mostrar SweetAlert de éxito
+    Swal.fire({
+      icon: 'success',
+      title: '¡Enviado!',
+      text: 'Tu mensaje ha sido enviado correctamente.'
+    });
+
+    // Limpiar formulario después de enviar
+    setFormData({
+      name: '',
+      email: '',
+      message: ''
+    });
   };
 
   return (
     <div className="contact-container">
-      <div className="contact-column column-one">
-        <div className="overlayColumn-one"></div>
+      <div className="columnContact column1Contact">
+        <div className="column1ContactOverlay">
+          {/* Puedes agregar contenido aquí si lo necesitas */}
+        </div>
       </div>
-      <div className="contact-column column-two">
-        <h2>Formulario de Contacto</h2>
-        <form onSubmit={handleSubmit} className='form'>
-          <div className="form-group">
-            <label htmlFor="name">Nombre:</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Tu nombre"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-            {errors.name && <p className="error-message">{errors.name}</p>}
-          </div>
-          <div className="form-group">
-            <label htmlFor="email">Correo Electrónico:</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Tu correo electrónico"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-            {errors.email && <p className="error-message">{errors.email}</p>}
-          </div>
-          <div className="form-group">
-            <label htmlFor="message">Mensaje:</label>
-            <textarea
-              id="message"
-              name="message"
-              placeholder="Tu mensaje"
-              rows="5"
-              value={formData.message}
-              onChange={handleChange}
-              required
-            ></textarea>
-            {errors.message && <p className="error-message">{errors.message}</p>}
-          </div>
+      <div className="columnContact column2Contact">
+        <h2>Contacto</h2>
+        <form onSubmit={handleSubmit} className="contact-form">
+          <label htmlFor="name">Nombre:</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+
+          <label htmlFor="email">Correo Electrónico:</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+
+          <label htmlFor="message">Mensaje:</label>
+          <textarea
+            name="message"
+            id="message"
+            value={formData.message}
+            onChange={handleChange}
+            required
+          />
+
           <button type="submit">Enviar</button>
         </form>
       </div>
