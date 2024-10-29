@@ -28,8 +28,8 @@
   .registerForm {
     display: flex;
     flex-direction: column;
-    width: 300px;
-    max-width: 300px;
+    width: 400px;
+    min-width: 300px;
     margin: auto;
     background-color: #202020;
     padding: 20px;
@@ -86,6 +86,20 @@
     border: 1px solid #fff;
   }
   
+  .swal2-dark {
+    background-color: #333; /* Fondo oscuro */
+    color: white; /* Texto blanco */
+  }
+  
+  .swal2-dark .swal2-title {
+    color: white; /* Título blanco */
+  }
+  
+  .swal2-dark .swal2-content {
+    color: white; /* Contenido blanco */
+  }
+  
+
   /* Estilos para pantallas pequeñas */
   @media (max-width: 768px) {
     .Register {
