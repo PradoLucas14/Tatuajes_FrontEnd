@@ -11,11 +11,11 @@ function Register() {
           <h2>Regístrate</h2>
           <label>
             Nombre:
-            <input type="text" name="name" required />
+            <input type="text" name="name" required autoComplete="off"/>
           </label>
           <label>
             Correo Electrónico:
-            <input type="email" name="email" required />
+            <input type="email" name="email" required autoComplete="off"/>
           </label>
           <label>
             Contraseña:

@@ -48,6 +48,7 @@
     margin-bottom: 10px;
     font-size: 14px;
     color: #fff;
+    font-weight: bold;
   }
   
   .registerForm input {
@@ -55,20 +56,34 @@
     margin-top: 5px;
     border: 1px solid #ccc;
     background-color: #404040;
+    color: #fff;
+    font-family: "Playfair Display", serif;
+    font-weight: bold;
   }
   
+  .registerForm input:focus{
+    border: 1px solid greenyellow; 
+    outline: none;
+  }
+
   .registerForm button {
     padding: 10px;
-    margin-top: 15px;
-    background-color: #4CAF50;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
+    background-color: #fff;
+    border: 1px solid !important;
+    color: black;
     cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: "Playfair Display", serif;
+    font-weight: bold;
+    transition: 0.2 ease;
+    border: 1px solid transparent;
   }
   
   .registerForm button:hover {
-    background-color: #45a049;
+    background-color: #202020;
+    color: #fff;
+    border: 1px solid #fff;
   }
   
   /* Estilos para pantallas pequeñas */
