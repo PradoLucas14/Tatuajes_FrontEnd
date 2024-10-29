@@ -1,14 +1,17 @@
-import { useState } from 'react'
+import React from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './pages/home/Home'
+import Register from './pages/register/Register' // Asegúrate de que esta ruta sea correcta
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <Home/>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} /> {/* Página principal */}
+        <Route path="/Register" element={<Register />} /> {/* Página de registro */}
+      </Routes>
+    </Router>
   )
 }
 

@@ -1,0 +1,92 @@
+.Register {
+    display: flex;
+    justify-content: space-between;
+    height: 100vh;
+    position: relative;
+  }
+  
+  .columnRegister {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  /* Colores de ejemplo para diferenciar las columnas */
+  .column1Register {
+    background-image: url("../../assets/img/imgRegister/img1.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .column2Register {
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Estilo para el formulario */
+  .registerForm {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    max-width: 300px;
+    margin: auto;
+    background-color: #202020;
+    padding: 20px;
+    border: 1px solid #fff;
+  }
+  
+  .registerForm h2 {
+    margin-bottom: 15px;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .registerForm label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #fff;
+  }
+  
+  .registerForm input {
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    background-color: #404040;
+  }
+  
+  .registerForm button {
+    padding: 10px;
+    margin-top: 15px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .registerForm button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Estilos para pantallas pequeñas */
+  @media (max-width: 768px) {
+    .Register {
+      display: block;
+    }
+  
+    .column1, .column2 {
+      width: 100%;
+    }
+  
+    .column2 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      background-color: rgba(208, 208, 208, 0.9);
+    }
+  }
+  
