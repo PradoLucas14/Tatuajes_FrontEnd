@@ -139,19 +139,37 @@ function Register() {
           <h2>Regístrate</h2>
           <label>
             Nombre:
-            <input type="text" name="name" value={formData.name} onChange={handleChange} required />
+            <input type="text" name="name" 
+            value={formData.name} 
+            onChange={handleChange} required 
+            placeholder="Escribe tu nombre"
+            />
           </label>
           <label>
             Correo Electrónico:
-            <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+            <input type="email" name="email" 
+            value={formData.email}
+            onChange={handleChange} required 
+            placeholder="Escribe tu correo electrónico"
+            />
           </label>
           <label>
             Contraseña:
-            <input type="password" name="password" value={formData.password} onChange={handleChange} required />
+            <input type="password" 
+            name="password" 
+            value={formData.password} 
+            onChange={handleChange} required 
+            placeholder="Escribe tu contraseña"
+            />
           </label>
           <label>
             Confirmar Contraseña:
-            <input type="password" name="confirmPassword" value={confirmPassword} onChange={handleConfirmPasswordChange} required />
+            <input type="password" 
+            name="confirmPassword" 
+            value={confirmPassword} 
+            onChange={handleConfirmPasswordChange} required 
+            placeholder="Confirma tu contraseña"
+            />
           </label>
           <button type="submit">Registrarse</button>
         </form>
