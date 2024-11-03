@@ -4,6 +4,7 @@ import About from './homeComponents/About'
 import Artist from './homeComponents/Artist'
 import BannerGalery from './homeComponents/BannerGalery'
 import Contact from './homeComponents/Contact'
+import Login from '../login/Login'
 
 function Home() {
   return (
@@ -13,6 +14,7 @@ function Home() {
       <Artist/>
       <BannerGalery/>
       <Contact/>
+      <Login/>
     </div>
   )
 }
