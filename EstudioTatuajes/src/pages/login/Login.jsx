@@ -39,8 +39,10 @@ function Login() {
       });
 
       // Guardar el token en el almacenamiento local o en el estado de la app
-      const { token } = response.data;
+      const { token, user } = response.data; // Supongo que el nombre del usuario también se devuelve
       localStorage.setItem('token', token);
+      localStorage.setItem('userRole', user.role); // Guardar el rol
+      localStorage.setItem('userName', user.name); // Guardar el nombre
 
       Swal.fire({
         title: 'Éxito',
@@ -55,17 +57,38 @@ function Login() {
       setFormData({ email: '', password: '' });
 
       // Redirigir al usuario a otra ruta (por ejemplo, la página de inicio)
-      navigate('/Home');
+      navigate('/');
     } catch (error) {
+      // Maneja los errores de la respuesta del servidor
       if (error.response) {
-        Swal.fire({
-          title: 'Error',
-          text: error.response.data.msg,
-          icon: 'error',
-          customClass: {
-            popup: 'swal2-dark'
-          }
-        });
+        if (error.response.data.msg === 'Usuario no encontrado') {
+          Swal.fire({
+            title: 'Error',
+            text: 'El correo electrónico no está registrado',
+            icon: 'error',
+            customClass: {
+              popup: 'swal2-dark'
+            }
+          });
+        } else if (error.response.data.msg === 'Contraseña incorrecta') {
+          Swal.fire({
+            title: 'Error',
+            text: 'La contraseña es incorrecta',
+            icon: 'error',
+            customClass: {
+              popup: 'swal2-dark'
+            }
+          });
+        } else {
+          Swal.fire({
+            title: 'Error',
+            text: error.response.data.msg, // Mensaje de error genérico
+            icon: 'error',
+            customClass: {
+              popup: 'swal2-dark'
+            }
+          });
+        }
       } else {
         Swal.fire({
           title: 'Error',
@@ -118,3 +141,4 @@ function Login() {
 }
 
 export default Login;
+
