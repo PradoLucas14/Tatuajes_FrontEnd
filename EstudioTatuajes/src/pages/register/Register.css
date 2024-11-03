@@ -7,7 +7,6 @@
   
   .columnRegister {
     flex: 1;
-    padding: 20px;
   }
   
   /* Colores de ejemplo para diferenciar las columnas */
@@ -15,8 +14,16 @@
     background-image: url("../../assets/img/imgRegister/img1.jpg");
     background-size: cover;
     background-position: center;
+    position: relative;
   }
   
+  .column1RegisterOverlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
   .column2Register {
     background-color: black;
     display: flex;

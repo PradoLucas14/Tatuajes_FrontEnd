@@ -133,7 +133,9 @@ function Register() {
 
   return (
     <div className='Register'>
-      <div className='columnRegister column1Register'></div>
+      <div className='columnRegister column1Register'>
+        <div className='column1RegisterOverlay'></div>
+      </div>
       <div className='columnRegister column2Register'>
         <form className='registerForm' autoComplete="off" onSubmit={handleSubmit}>
           <h2>Regístrate</h2>
