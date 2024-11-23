@@ -1,0 +1,94 @@
+.loginContainer {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .columnLeft, .columnRight {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .columnLeft {
+    background-color: black; /* Cambia según tus necesidades */
+  }
+  
+  .columnRight {
+    background-image: url("../../assets/img/imgHome/img-login.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .loginForm {
+    width: 80%;
+    max-width: 450px;
+    background: #202020;
+    padding: 20px;
+    border: 1px solid #fff;
+  }
+  
+  .loginForm h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: #fff;
+}
+  
+  .loginForm label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .loginForm input {
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    background-color: #404040;
+    color: #fff;
+    font-family: "Playfair Display", serif;
+    font-weight: bold;
+  }
+
+  .loginForm input:focus{
+    border: 1px solid greenyellow; 
+    outline: none;
+  }
+  
+  .loginForm button {
+    width: 100%;
+    padding: 10px;
+    background-color: #fff;
+    color: #202020;
+    border: 1px solid #fff;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-family: "Playfair Display", serif;
+    font-weight: bold;
+  }
+  
+  .loginForm button:hover {
+    background-color: greenyellow;
+    color: #202020;
+    border: 1px solid greenyellow;
+    font-family: "Playfair Display", serif;
+  }
+  
+  .registerRedirectButton{
+    padding: 0 !important;
+    background-color: transparent !important;
+    border: none !important;
+    margin-top: 5px !important;
+    margin-bottom: 10px !important;
+    font-size: 15px !important;
+    color: #fff !important;
+}
+
+.registerRedirectButton:hover{
+    text-decoration: underline !important;
+    color: #fff !important;
+}

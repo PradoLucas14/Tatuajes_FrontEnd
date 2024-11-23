@@ -11,12 +11,10 @@ function Login() {
     password: ''
   });
 
-  // Maneja los cambios en los campos del formulario
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Maneja el envío del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -38,11 +36,14 @@ function Login() {
         password: formData.password
       });
 
-      // Guardar el token en el almacenamiento local o en el estado de la app
-      const { token, user } = response.data; // Supongo que el nombre del usuario también se devuelve
+      const { token, user } = response.data;
+
+      // Guardar datos en localStorage y sessionStorage
       localStorage.setItem('token', token);
-      localStorage.setItem('userRole', user.role); // Guardar el rol
-      localStorage.setItem('userName', user.name); // Guardar el nombre
+      localStorage.setItem('userRole', user.role);
+      localStorage.setItem('userName', user.name);
+      sessionStorage.setItem('userRole', user.role);
+      sessionStorage.setItem('userName', user.name);
 
       Swal.fire({
         title: 'Éxito',
@@ -53,42 +54,36 @@ function Login() {
         }
       });
 
-      // Limpiar el formulario
-      setFormData({ email: '', password: '' });
+      // Redirección según el rol del usuario
+      switch (user.role) {
+        case 'cliente':
+          navigate('/cliente');
+          break;
+        case 'tatuador':
+          navigate('/tatuador');
+          break;
+        case 'recepcionista':
+          navigate('/recepcionista');
+          break;
+        case 'administrador':
+          navigate('/administrador');
+          break;
+        default:
+          navigate('/');
+          break;
+      }
 
-      // Redirigir al usuario a otra ruta (por ejemplo, la página de inicio)
-      navigate('/');
+      setFormData({ email: '', password: '' });
     } catch (error) {
-      // Maneja los errores de la respuesta del servidor
       if (error.response) {
-        if (error.response.data.msg === 'Usuario no encontrado') {
-          Swal.fire({
-            title: 'Error',
-            text: 'El correo electrónico no está registrado',
-            icon: 'error',
-            customClass: {
-              popup: 'swal2-dark'
-            }
-          });
-        } else if (error.response.data.msg === 'Contraseña incorrecta') {
-          Swal.fire({
-            title: 'Error',
-            text: 'La contraseña es incorrecta',
-            icon: 'error',
-            customClass: {
-              popup: 'swal2-dark'
-            }
-          });
-        } else {
-          Swal.fire({
-            title: 'Error',
-            text: error.response.data.msg, // Mensaje de error genérico
-            icon: 'error',
-            customClass: {
-              popup: 'swal2-dark'
-            }
-          });
-        }
+        Swal.fire({
+          title: 'Error',
+          text: error.response.data.msg || 'Error desconocido',
+          icon: 'error',
+          customClass: {
+            popup: 'swal2-dark'
+          }
+        });
       } else {
         Swal.fire({
           title: 'Error',
@@ -102,43 +97,52 @@ function Login() {
     }
   };
 
-  // Función para redirigir al componente de registro
   const handleRegisterRedirect = () => {
     navigate('/Register');
   };
 
   return (
-    <div className='Login'>
-      <form className='loginForm' autoComplete="off" onSubmit={handleSubmit}>
-        <h2>Iniciar Sesión</h2>
-        <label>
-          Correo Electrónico:
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <label>
-          Contraseña:
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <button type="submit">Iniciar Sesión</button>
-        <button type="button" onClick={handleRegisterRedirect} className="registerRedirectButton">
-          Registrarse
-        </button>
-      </form>
+    <div className="loginContainer">
+      <div className="columnLeft">
+        <form className="loginForm" autoComplete="off" onSubmit={handleSubmit}>
+          <h2>Iniciar Sesión</h2>
+          <label>
+            Correo Electrónico:
+            <input
+              placeholder="Escribe tu correo electrónico"
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <label>
+            Contraseña:
+            <input
+              placeholder="Escribe tu contraseña"
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <button type="submit">Iniciar Sesión</button>
+          <button
+            type="button"
+            onClick={handleRegisterRedirect}
+            className="registerRedirectButton"
+          >
+            Haz click para registrarte
+          </button>
+        </form>
+      </div>
+      <div className="columnRight">
+        {/* Puedes agregar contenido aquí si es necesario */}
+      </div>
     </div>
   );
 }
 
 export default Login;
-
