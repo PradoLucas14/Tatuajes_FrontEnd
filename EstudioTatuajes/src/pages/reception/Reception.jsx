@@ -20,6 +20,9 @@ function Reception() {
   const [searchTerm, setSearchTerm] = useState(''); // Estado para la búsqueda
   const [currentPage, setCurrentPage] = useState(1); // Estado para la página actual
   const rowsPerPage = 5; // Número de filas por página
+  const [startDate, setStartDate] = useState(''); // Fecha de inicio del filtro
+  const [endDate, setEndDate] = useState(''); // Fecha de fin del filtro
+
 
   // Función para obtener las reservas desde la API
   const fetchReservations = async () => {
@@ -245,6 +248,7 @@ function Reception() {
   const currentRows = filteredReservations.slice(indexOfFirstRow, indexOfLastRow);
 
   const totalPages = Math.ceil(filteredReservations.length / rowsPerPage);
+  
 
   return (
     <div className="reception-container">

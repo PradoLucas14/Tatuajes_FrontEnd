@@ -21,6 +21,7 @@
     border: 2px solid #fff !important;
     color: #fff !important;
     border-radius: 0 !important;
+    margin-bottom: 10px;
     font-family: "Playfair Display", serif;
   }
   .artist-search-input-unique::placeholder{
@@ -34,7 +35,7 @@
     color: #fff !important;
   }
   .artist-table-unique{
-    margin-top: 10px;
+    margin-top: 20px !important;
     border-radius: 0 !important;
   }
   .artist-table-unique th{

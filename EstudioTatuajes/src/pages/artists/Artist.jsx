@@ -9,6 +9,8 @@ function Artist() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDate, setSelectedDate] = useState('');
   const [loading, setLoading] = useState(true);
+  const [projectUrl, setProjectUrl] = useState(''); // Campo para la URL de imagen
+  const [isSubmitting, setIsSubmitting] = useState(false); // Estado de envío
 
   const tatuadorName = localStorage.getItem('userName'); // Obtiene el nombre del tatuador logueado
 
@@ -16,13 +18,11 @@ function Artist() {
     const fetchReservations = async () => {
       try {
         const response = await axios.get('http://localhost:5000/api/reservs');
-        // Normalizar el formato de la fecha al estándar inglés
         const normalizedReservations = response.data.map((reservation) => ({
           ...reservation,
-          fecha: new Date(reservation.fecha).toISOString().split('T')[0], // Convierte al formato YYYY-MM-DD
+          fecha: new Date(reservation.fecha).toISOString().split('T')[0],
         }));
 
-        // Filtrar por tatuador y estado 'Pendiente'
         const filteredReservations = normalizedReservations.filter(
           (reservation) =>
             reservation.tatuador === tatuadorName &&
@@ -54,37 +54,73 @@ function Artist() {
     fetchReservations();
   }, [tatuadorName]);
 
-  // Maneja el cambio en la barra de búsqueda
   const handleSearch = (e) => {
     const query = e.target.value.toLowerCase();
     setSearchQuery(query);
     applyFilters(query, selectedDate);
   };
 
-  // Maneja el cambio en el selector de fecha
   const handleDateChange = (e) => {
     const date = e.target.value;
     setSelectedDate(date);
     applyFilters(searchQuery, date);
   };
 
-  // Aplica los filtros combinados
   const applyFilters = (query, date) => {
     let results = reservations;
 
-    // Filtra por cliente
     if (query) {
       results = results.filter((reservation) =>
         reservation.cliente.toLowerCase().includes(query)
       );
     }
 
-    // Filtra por fecha
     if (date) {
       results = results.filter((reservation) => reservation.fecha === date);
     }
 
     setFilteredReservations(results);
+  };
+
+  const handleSubmitProject = async (e) => {
+    e.preventDefault();
+
+    if (!projectUrl) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'URL requerida',
+        text: 'Por favor, ingresa una URL para cargar el proyecto.',
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const projectData = {
+        name: tatuadorName,
+        image: projectUrl,
+      };
+
+      await axios.post('http://localhost:3000/proyectos', projectData);
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Proyecto cargado',
+        text: 'El proyecto se cargó exitosamente.',
+      });
+
+      setProjectUrl('');
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error al cargar el proyecto',
+        text: 'No se pudo cargar el proyecto. Por favor, intenta nuevamente.',
+      });
+      console.error('Error submitting project:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -135,6 +171,31 @@ function Artist() {
           No hay reservas pendientes que coincidan con los filtros.
         </p>
       )}
+
+      <div className="artist-project-form-unique">
+        <h3 className="artist-project-title-unique">Cargar Proyecto</h3>
+        <form onSubmit={handleSubmitProject}>
+          <div className="form-group">
+            <label htmlFor="projectUrl">URL del proyecto</label>
+            <input
+              type="url"
+              id="projectUrl"
+              className="form-control"
+              placeholder="Ingrese la URL de la imagen"
+              value={projectUrl}
+              onChange={(e) => setProjectUrl(e.target.value)}
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="btn btn-primary"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? 'Cargando...' : 'Subir Proyecto'}
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
