@@ -1,0 +1,48 @@
+.reception-container {
+  padding: 20px;
+}
+
+.reception-title {
+  color: #fff;
+}
+
+.reception-search-bar {
+  margin-bottom: 20px;
+}
+
+.reception-search-input {
+  background-color: #222;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+.reception-form {
+  margin-bottom: 20px;
+}
+
+.reception-input, .reception-select {
+  background-color: #222;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+.reception-submit {
+  background-color: #444;
+  border-color: #555;
+}
+
+.reception-table {
+  margin-top: 20px;
+}
+
+.reception-confirm-btn {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.reception-cancel-btn {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+    

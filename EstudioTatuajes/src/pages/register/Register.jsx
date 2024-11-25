@@ -88,7 +88,7 @@ function Register() {
     try {
       const response = await axios.post(`http://localhost:5000/api/users/register`, {
         ...formData,
-        role: 'cliente', // Valor por defecto
+        role: 'recepcionista', // Valor por defecto
         claveDeAccion: '1234' // Valor por defecto
       });
 

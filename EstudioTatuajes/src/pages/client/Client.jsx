@@ -2,10 +2,11 @@ import React from 'react'
 
 function Client() {
   return (
-    <div className='cliente'>
-      
+    <div>
+      hola cliente
     </div>
   )
 }
 
 export default Client
+

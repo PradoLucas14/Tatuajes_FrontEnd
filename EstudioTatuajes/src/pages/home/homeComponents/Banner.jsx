@@ -21,7 +21,7 @@ function Banner() {
             ¡Descubre tu próximo tatuaje!
           </p>
           <button className='bannerButton' onClick={() => navigate('/Register')}>
-            <p>Registrate</p>
+            Registrate
           </button>
           <div className='redesBanner'>
             <button className='RedBanner'>

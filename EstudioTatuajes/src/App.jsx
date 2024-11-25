@@ -18,7 +18,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login />} />        
 
         {/* Rutas privadas protegidas por rol */}
         <Route element={<PrivateRoute allowedRoles={['cliente']} />}>
