@@ -25,24 +25,33 @@
     object-fit: cover;
     border: 1px solid #fff;
 }
+.textAboutContainer{
+}
 .tituloAbout{
     font-size: 2.5rem;
     margin-bottom: 20px;
     margin-top: 30px;
+    font-family: "Playfair Display", serif;
 }
 .aboutDescripcion{
     font-size: 1.2rem;
     margin-bottom: 20px;
+    font-family: "Playfair Display", serif;
 }
 .locationAbout{
     font-size: 1.2rem;
     font-weight: bold;
     margin-bottom: 10px;
+    font-family: "Playfair Display", serif;
 }
 .horarioAbout{
     font-size: 1.2rem;
     font-weight: bold;
     margin-bottom: 30px;
+    font-family: "Playfair Display", serif;
+}
+.aboutButton{
+    margin-bottom: 40px;
 }
 @media (max-width: 991px) {
     .containerAbout {

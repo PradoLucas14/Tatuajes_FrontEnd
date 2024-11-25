@@ -24,8 +24,8 @@ function About() {
                     <p className="horarioAbout">
                         <i className="fas fa-clock"></i> Horarios: Lunes a viernes de 10:00 a 18:00.
                     </p>
-                    <button className='bannerButton'>
-                        <p>Ver más</p>
+                    <button className='bannerButton aboutButton'>
+                        Ver mas
                     </button>
                 </div>
             </div>

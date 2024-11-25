@@ -1,48 +1,148 @@
 .reception-container {
-  padding: 20px;
+  padding-top: 90px;
+  padding-left: 9%;
+  padding-right: 9%;
+  background-color: black;
+  height: auto;
+  height: 120vh;
 }
-
 .reception-title {
   color: #fff;
+  font-family: "Playfair Display", serif;
+  font-size: 2.4rem;
 }
-
-.reception-search-bar {
-  margin-bottom: 20px;
-}
-
-.reception-search-input {
-  background-color: #222;
-  color: #fff;
-  border: 1px solid #555;
-}
-
 .reception-form {
   margin-bottom: 20px;
+  border: 1px solid #fff;
+  background-color: #202020;
+  padding: 20px 30px;
+  margin-bottom: 50px;
 }
-
-.reception-input, .reception-select {
-  background-color: #222;
+.form-reserv-title{
   color: #fff;
-  border: 1px solid #555;
+  font-family: "Playfair Display", serif;
+  margin-bottom: 20px;
+  font-size: 1.4rem;
 }
-
+.reception-input, .reception-select {
+  border: 2px solid #fff;
+  border-radius: 0 !important;
+  background-color: #404040;
+  color: #888;
+  font-family: "Playfair Display", serif;
+}
+.reception-input::placeholder{
+  color:#888;
+}
+.reception-input:focus{
+  box-shadow: none !important;
+  border: 2px solid greenyellow;
+  background-color: #404040;
+  color: #fff;
+}
+.reception-select:focus{
+  box-shadow: none !important;
+  border: 2px solid greenyellow;
+  background-color: #404040;
+  color: #fff;
+}
+.reception-form-group {
+  margin-bottom: 1rem;
+}
+.reception-form label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #fff;
+  font-family: "Playfair Display", serif;
+}
 .reception-submit {
-  background-color: #444;
-  border-color: #555;
+  width: 100%;
+  max-width: 200px;
+  background-color: #fff !important;
+  padding: 5px;
+  border: 2px solid #fff !important;
+  font-weight: bold;
+  font-family: "Playfair Display", serif;
+  color: black;
+  margin-bottom: 10px;
+  transition: 0.2s ease;
 }
-
+.reception-submit:hover{
+  background-color: greenyellow !important;
+  border: 2px solid greenyellow !important;
+}
+.reception-search-bar {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.reception-search-bar h3{
+  color: #fff;
+  font-family: "Playfair Display", serif;
+  font-size: 1.9rem;
+  margin-bottom: 20px;
+}
+.reception-search-input {
+  background-color: #404040;
+  border-radius: 0 !important;
+  border: 2px solid #fff;
+  font-family: "Playfair Display", serif;
+  color: #fff;
+}
+.reception-search-input:focus{
+  background-color: #404040;
+  border: 2px solid greenyellow;
+  outline: none;
+  color: #fff;
+  box-shadow: none !important;
+}
+.reception-search-input::placeholder{
+  color: #888;
+}
 .reception-table {
-  margin-top: 20px;
+  margin-top: 30px;
 }
-
+.reception-table th{
+  background-color: #909090;
+  color: #000;
+  text-align: center;
+  border: 1px solid #fff;
+  font-family: "Playfair Display", serif;
+}
+.reception-table td{
+  background-color: #404040;
+  text-align: center;
+  border: 1px solid #fff;
+  font-family: "Playfair Display", serif;
+}
+.accion-reserv{
+  width: 200px;
+}
 .reception-confirm-btn {
   background-color: #28a745;
   border-color: #28a745;
+  margin-left: 5px;
+  margin-right: 5px;
+  font-weight: bold;
 }
-
 .reception-cancel-btn {
   background-color: #dc3545;
   border-color: #dc3545;
+  margin-left: 5px;
+  margin-right: 5px;
+  font-weight: bold;
 }
+.page-link{
+  background-color: #202020 !important;
+  color: greenyellow !important;
+  border-radius: 0 !important;
+}
+.page-link:focus{
+  box-shadow: none !important;
+  border: 1px solid greenyellow;
+}
+
 
     

@@ -18,6 +18,8 @@ function Reception() {
 
   const [formError, setFormError] = useState('');
   const [searchTerm, setSearchTerm] = useState(''); // Estado para la búsqueda
+  const [currentPage, setCurrentPage] = useState(1); // Estado para la página actual
+  const rowsPerPage = 5; // Número de filas por página
 
   // Función para obtener las reservas desde la API
   const fetchReservations = async () => {
@@ -136,86 +138,6 @@ function Reception() {
     }
   };
 
-  // Función para cambiar el estado de la reserva a "Confirmado"
-  const handleConfirm = async (id) => {
-    Swal.fire({
-      title: '¿Estás seguro?',
-      text: '¿Quieres confirmar esta reserva?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Confirmar',
-      cancelButtonText: 'Cancelar',
-      background: '#333', // Color de fondo oscuro
-      color: '#fff', // Color de texto blanco
-      confirmButtonColor: '#28a745', // Botón Confirmar en verde
-      cancelButtonColor: '#d33', // Botón Cancelar en rojo
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        try {
-          // Solicitud PATCH para cambiar el estado de la reserva
-          await axios.patch(`http://localhost:5000/api/reservs/${id}`, { estado: 'Confirmado' });
-
-          // Actualiza el estado local de las reservas
-          setReservations(reservations.map(reservation => 
-            reservation._id === id ? { ...reservation, estado: 'Confirmado' } : reservation
-          ));
-
-          // Alerta de éxito
-          Swal.fire({
-            title: 'Éxito',
-            text: 'La reserva ha sido confirmada.',
-            icon: 'success',
-            background: '#333', // Color de fondo oscuro
-            color: '#fff', // Color de texto blanco
-            confirmButtonColor: '#28a745', // Botón Confirmar en verde
-          });
-        } catch (error) {
-          console.error('Error confirming reservation:', error);
-        }
-      }
-    });
-  };
-
-  // Función para cambiar el estado de la reserva a "Cancelado"
-  const handleCancel = async (id) => {
-    Swal.fire({
-      title: '¿Estás seguro?',
-      text: '¿Quieres cancelar esta reserva?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Cancelar',
-      cancelButtonText: 'Volver',
-      background: '#333', // Color de fondo oscuro
-      color: '#fff', // Color de texto blanco
-      confirmButtonColor: '#d33', // Botón Cancelar en rojo
-      cancelButtonColor: '#28a745', // Botón Volver en verde
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        try {
-          // Solicitud PATCH para cambiar el estado de la reserva
-          await axios.patch(`http://localhost:5000/api/reservs/${id}`, { estado: 'Cancelado' });
-
-          // Actualiza el estado local de las reservas
-          setReservations(reservations.map(reservation => 
-            reservation._id === id ? { ...reservation, estado: 'Cancelado' } : reservation
-          ));
-
-          // Alerta de éxito
-          Swal.fire({
-            title: 'Éxito',
-            text: 'La reserva ha sido cancelada.',
-            icon: 'success',
-            background: '#333', // Color de fondo oscuro
-            color: '#fff', // Color de texto blanco
-            confirmButtonColor: '#d33', // Botón Cancelar en rojo
-          });
-        } catch (error) {
-          console.error('Error canceling reservation:', error);
-        }
-      }
-    });
-  };
-
   // Función para manejar el cambio en la barra de búsqueda
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -226,77 +148,103 @@ function Reception() {
     reservation.cliente.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // Calcular los datos paginados
+  const indexOfLastRow = currentPage * rowsPerPage;
+  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+  const currentRows = filteredReservations.slice(indexOfFirstRow, indexOfLastRow);
+
+  const totalPages = Math.ceil(filteredReservations.length / rowsPerPage);
+
   return (
-    <div className="reception-container mt-5">
-      <h2 className="reception-title text-center mb-4">Lista de Reservas</h2>
-      
-      {/* Barra de búsqueda con Bootstrap */}
-      <div className="reception-search-bar mb-4 d-flex justify-content-center">
+    <div className="reception-container">
+      <h2 className="reception-title mb-4">Recepción</h2>
+
+      <form onSubmit={handleSubmit} className="reception-form">
+        <h3 className="form-reserv-title">Registrar reserva:</h3>
+        {formError && <div className="reception-form-error alert alert-danger">{formError}</div>}
+
+        <div className="row">
+          <div className="col-md-6">
+            <div className="form-group reception-form-group">
+              <label htmlFor="cliente">Nombre del cliente:</label>
+              <input
+                type="text"
+                id="cliente"
+                className="reception-input form-control"
+                name="cliente"
+                value={formData.cliente}
+                onChange={handleInputChange}
+                placeholder="Nombre del cliente"
+                autoComplete='off'
+                required
+              />
+            </div>
+
+            <div className="form-group reception-form-group">
+              <label htmlFor="fecha">Fecha:</label>
+              <input
+                type="date"
+                id="fecha"
+                className="reception-input form-control"
+                name="fecha"
+                value={formData.fecha}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+          </div>
+
+          <div className="col-md-6">
+            <div className="form-group reception-form-group">
+              <label htmlFor="hora">Hora:</label>
+              <input
+                type="time"
+                id="hora"
+                className="reception-input form-control"
+                name="hora"
+                value={formData.hora}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+
+            <div className="form-group reception-form-group">
+              <label htmlFor="tatuador">Tatuador:</label>
+              <select
+                id="tatuador"
+                name="tatuador"
+                className="reception-select form-control"
+                value={formData.tatuador}
+                onChange={handleInputChange}
+                required
+              >
+                <option value="">Seleccionar Tatuador</option>
+                {tatuadores.map(tatuador => (
+                  <option key={tatuador._id} value={tatuador.name}>
+                    {tatuador.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div className="text-center mt-4">
+          <button type="submit" className="reception-submit">Registrar Reserva</button>
+        </div>
+      </form>
+
+      <div className="reception-search-bar">
+        <h3 className=''>Lista de reservas:</h3>
         <input
           type="text"
           className="reception-search-input form-control w-50"
           placeholder="Buscar por nombre del cliente"
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={handleSearchChange}
         />
       </div>
 
-      {/* Formulario para crear nuevas reservas */}
-      <form onSubmit={handleSubmit} className="reception-form mb-4">
-        {formError && <div className="reception-form-error alert alert-danger">{formError}</div>}
-        <div className="reception-form-row form-row">
-          <div className="reception-form-col col">
-            <input
-              type="text"
-              className="reception-input form-control"
-              name="cliente"
-              value={formData.cliente}
-              onChange={handleInputChange}
-              placeholder="Nombre del cliente"
-              required
-            />
-          </div>
-          <div className="reception-form-col col">
-            <input
-              type="date"
-              className="reception-input form-control"
-              name="fecha"
-              value={formData.fecha}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-          <div className="reception-form-col col">
-            <input
-              type="time"
-              className="reception-input form-control"
-              name="hora"
-              value={formData.hora}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-          <div className="reception-form-col col">
-            <select
-              name="tatuador"
-              className="reception-select form-control"
-              value={formData.tatuador}
-              onChange={handleInputChange}
-              required
-            >
-              <option value="">Seleccionar Tatuador</option>
-              {tatuadores.map(tatuador => (
-                <option key={tatuador._id} value={tatuador.name}>
-                  {tatuador.name}
-                </option>
-              ))}
-            </select>
-          </div>
-          <button type="submit" className="reception-submit btn btn-dark">Registrar Reserva</button>
-        </div>
-      </form>
-
-      {/* Tabla de reservas */}
       <table className="reception-table table table-dark">
         <thead>
           <tr>
@@ -309,14 +257,14 @@ function Reception() {
           </tr>
         </thead>
         <tbody>
-          {filteredReservations.map(reservation => (
+          {currentRows.map(reservation => (
             <tr key={reservation._id}>
               <td>{reservation.cliente}</td>
               <td>{reservation.fecha}</td>
               <td>{reservation.hora}</td>
               <td>{reservation.tatuador}</td>
               <td>{reservation.estado}</td>
-              <td>
+              <td className='accion-reserv'>
                 {reservation.estado !== 'Confirmado' && reservation.estado !== 'Cancelado' && (
                   <>
                     <button
@@ -338,6 +286,32 @@ function Reception() {
           ))}
         </tbody>
       </table>
+
+      {/* Paginación */}
+      <nav aria-label="Page navigation">
+        <ul className="pagination justify-content-center">
+          <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+            <button className="page-link" onClick={() => setCurrentPage(currentPage - 1)}>
+              Anterior
+            </button>
+          </li>
+          {Array.from({ length: totalPages }, (_, index) => (
+            <li
+              key={index + 1}
+              className={`page-item ${currentPage === index + 1 ? 'active' : ''}`}
+            >
+              <button className="page-link" onClick={() => setCurrentPage(index + 1)}>
+                {index + 1}
+              </button>
+            </li>
+          ))}
+          <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
+            <button className="page-link" onClick={() => setCurrentPage(currentPage + 1)}>
+              Siguiente
+            </button>
+          </li>
+        </ul>
+      </nav>
     </div>
   );
 }
