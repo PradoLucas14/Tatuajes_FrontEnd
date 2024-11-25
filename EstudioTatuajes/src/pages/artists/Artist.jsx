@@ -7,6 +7,7 @@ function Artist() {
   const [reservations, setReservations] = useState([]);
   const [filteredReservations, setFilteredReservations] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedDate, setSelectedDate] = useState('');
   const [loading, setLoading] = useState(true);
 
   const tatuadorName = localStorage.getItem('userName'); // Obtiene el nombre del tatuador logueado
@@ -15,12 +16,19 @@ function Artist() {
     const fetchReservations = async () => {
       try {
         const response = await axios.get('http://localhost:5000/api/reservs');
+        // Normalizar el formato de la fecha al estándar inglés
+        const normalizedReservations = response.data.map((reservation) => ({
+          ...reservation,
+          fecha: new Date(reservation.fecha).toISOString().split('T')[0], // Convierte al formato YYYY-MM-DD
+        }));
+
         // Filtrar por tatuador y estado 'Pendiente'
-        const filteredReservations = response.data.filter(
+        const filteredReservations = normalizedReservations.filter(
           (reservation) =>
             reservation.tatuador === tatuadorName &&
             reservation.estado.toLowerCase() === 'pendiente'
         );
+
         if (filteredReservations.length === 0) {
           Swal.fire({
             icon: 'info',
@@ -28,6 +36,7 @@ function Artist() {
             text: 'No tienes reservas pendientes en este momento.',
           });
         }
+
         setReservations(filteredReservations);
         setFilteredReservations(filteredReservations);
       } catch (error) {
@@ -49,9 +58,32 @@ function Artist() {
   const handleSearch = (e) => {
     const query = e.target.value.toLowerCase();
     setSearchQuery(query);
-    const results = reservations.filter((reservation) =>
-      reservation.cliente.toLowerCase().includes(query)
-    );
+    applyFilters(query, selectedDate);
+  };
+
+  // Maneja el cambio en el selector de fecha
+  const handleDateChange = (e) => {
+    const date = e.target.value;
+    setSelectedDate(date);
+    applyFilters(searchQuery, date);
+  };
+
+  // Aplica los filtros combinados
+  const applyFilters = (query, date) => {
+    let results = reservations;
+
+    // Filtra por cliente
+    if (query) {
+      results = results.filter((reservation) =>
+        reservation.cliente.toLowerCase().includes(query)
+      );
+    }
+
+    // Filtra por fecha
+    if (date) {
+      results = results.filter((reservation) => reservation.fecha === date);
+    }
+
     setFilteredReservations(results);
   };
 
@@ -59,13 +91,19 @@ function Artist() {
     <div className="artist-container-unique">
       <h2 className="artist-title-unique">Reservas pendientes asignadas</h2>
 
-      <div className="artist-search-bar-unique">
+      <div className="artist-filters-unique">
         <input
           type="text"
           className="artist-search-input-unique form-control"
           placeholder="Buscar por cliente..."
           value={searchQuery}
           onChange={handleSearch}
+        />
+        <input
+          type="date"
+          className="artist-search-input-unique form-control"
+          value={selectedDate}
+          onChange={handleDateChange}
         />
       </div>
 
@@ -94,7 +132,7 @@ function Artist() {
         </table>
       ) : (
         <p className="artist-no-results-unique text-center">
-          No hay reservas pendientes que coincidan con la búsqueda.
+          No hay reservas pendientes que coincidan con los filtros.
         </p>
       )}
     </div>
