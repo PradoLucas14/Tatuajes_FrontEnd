@@ -1,0 +1,68 @@
+.artist-container-unique {
+    padding: 90px 9%;
+    background-color: black; /* Fondo oscuro */
+    color: #ffffff;
+    min-height: 100vh;
+    max-height: auto;
+  }
+  
+  .artist-title-unique {
+    margin-bottom: 20px;
+    font-family: "Playfair Display", serif;
+    font-size: 1.6rem;
+  }
+  
+  .artist-search-bar-unique {
+    margin-bottom: 15px;
+  }
+  
+  .artist-search-input-unique {
+    background-color: #303030 !important;
+    border: 2px solid #fff !important;
+    color: #fff !important;
+    border-radius: 0 !important;
+    font-family: "Playfair Display", serif;
+  }
+  .artist-search-input-unique::placeholder{
+    color: #888 !important;
+  }
+  .artist-search-input-unique:focus {
+    outline: none;
+    box-shadow: none !important;
+    border: 2px solid greenyellow !important;
+    background-color: #303030 !important;
+    color: #fff !important;
+  }
+  .artist-table-unique{
+    margin-top: 10px;
+    border-radius: 0 !important;
+  }
+  .artist-table-unique th{
+    background-color: #909090 !important;
+    text-align: center !important;
+    border-radius: 0 !important;
+    border: 2px solid #fff !important;
+    font-family: "Playfair Display", serif;
+  }
+  .artist-table-unique td{
+    background-color: #404040 !important;
+    text-align: center !important;
+    border-radius: 0 !important;
+    border: 2px solid #fff !important;
+    font-family: "Playfair Display", serif;
+    color: #fff !important;
+    font-weight: bold !important;
+  }
+  .artist-loading-unique,
+  .artist-no-results-unique {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #ddd;
+  }
+  
+  .artist-table-unique {
+    margin-top: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  

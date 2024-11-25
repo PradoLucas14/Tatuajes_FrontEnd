@@ -138,6 +138,97 @@ function Reception() {
     }
   };
 
+  // Función para confirmar una reserva
+  const handleConfirm = async (id) => {
+    const result = await Swal.fire({
+      title: '¿Estás seguro?',
+      text: '¿Quieres confirmar esta reserva?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#28a745',
+      cancelButtonColor: '#6c757d',
+      confirmButtonText: 'Confirmar',
+      cancelButtonText: 'volver',
+      background: '#333',
+      color: '#fff',
+    });
+
+    if (result.isConfirmed) {
+      try {
+        await axios.patch(`http://localhost:5000/api/reservs/${id}`, { estado: 'Confirmado' });
+        Swal.fire({
+          title: 'Éxito',
+          text: 'Reserva confirmada exitosamente.',
+          icon: 'success',
+          background: '#333',
+          color: '#fff',
+          confirmButtonColor: '#28a745',
+        });
+
+        // Actualizar el estado local de las reservas
+        setReservations((prev) =>
+          prev.map((res) => (res._id === id ? { ...res, estado: 'Confirmado' } : res))
+        );
+      } catch (error) {
+        console.error('Error confirming reservation:', error);
+        Swal.fire({
+          title: 'Error',
+          text: 'Hubo un problema al confirmar la reserva.',
+          icon: 'error',
+          background: '#333',
+          color: '#fff',
+          confirmButtonColor: '#d33',
+        });
+      }
+    }
+  };
+
+  // Función para cancelar una reserva
+  const handleCancel = async (id) => {
+    const result = await Swal.fire({
+      title: '¿Estás seguro?',
+      text: '¿Quieres cancelar esta reserva?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#6c757d',
+      confirmButtonText: 'Cancelar',
+      cancelButtonText: 'Volver',
+      background: '#333',
+      color: '#fff',
+    });
+
+    if (result.isConfirmed) {
+      try {
+        await axios.patch(`http://localhost:5000/api/reservs/${id}`, { estado: 'Cancelado' });
+        Swal.fire({
+          title: 'Éxito',
+          text: 'Reserva cancelada exitosamente.',
+          icon: 'success',
+          background: '#333',
+          color: '#fff',
+          confirmButtonColor: '#28a745',
+        });
+
+        // Actualizar el estado local de las reservas
+        setReservations((prev) =>
+          prev.map((res) => (res._id === id ? { ...res, estado: 'Cancelado' } : res))
+        );
+      } catch (error) {
+        console.error('Error canceling reservation:', error);
+        Swal.fire({
+          title: 'Error',
+          text: 'Hubo un problema al cancelar la reserva.',
+          icon: 'error',
+          background: '#333',
+          color: '#fff',
+          confirmButtonColor: '#d33',
+        });
+      }
+    }
+  };
+
+
   // Función para manejar el cambio en la barra de búsqueda
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -264,7 +355,7 @@ function Reception() {
               <td>{reservation.hora}</td>
               <td>{reservation.tatuador}</td>
               <td>{reservation.estado}</td>
-              <td className='accion-reserv'>
+              <td className="accion-reserv">
                 {reservation.estado !== 'Confirmado' && reservation.estado !== 'Cancelado' && (
                   <>
                     <button

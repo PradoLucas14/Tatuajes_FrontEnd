@@ -1,0 +1,74 @@
+.client-reservations-container {
+    padding: 100px 9%;
+    background-color: #000;
+    color: #ffffff;  
+    max-height: auto;
+    min-height: 100vh;
+}
+  
+  .client-reservations-title {
+    margin-bottom: 40px;
+    font-family: "Playfair Display", serif;
+  }
+  
+  .reservations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .reservation-card {
+    background-color: #202020;
+    padding: 15px;
+    border-radius: 0;
+    border: 2px solid #ffffff;
+    width: 270px;
+  }
+  
+  .reservation-card h3 {
+    margin-top: 0;
+    font-family: "Playfair Display", serif;
+    margin-bottom: 20px;
+    font-size: 1.6rem;
+  }
+  
+  .reservation-detail {
+    margin: 5px 0;
+    font-family: "Playfair Display", serif;
+  }
+  
+  .reservation-status {
+    font-weight: bold;
+    text-transform: capitalize;
+    font-family: "Playfair Display", serif;
+    margin-top: 20px;
+  }
+  
+  .reservation-status.confirmado {
+    color: #28a745;
+  }
+  
+  .reservation-status.cancelado {
+    color: #d33;
+  }
+  
+  .reservation-status.pendiente {
+    color: mediumpurple;
+  }
+
+  .loading,
+  .error,
+  .no-reservations {
+    text-align: center;
+    margin-top: 20px;
+    font-family: "Playfair Display", serif;
+  }
+  
+  @media (max-width: 991px) {
+    .client-reservations-container {
+        padding: 100px 9%;
+        background-color: #000;
+        color: #ffffff;
+        height: auto;
+      }
+  }
