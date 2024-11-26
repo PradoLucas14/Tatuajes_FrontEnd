@@ -41,7 +41,6 @@ const CarouselComponent = () => {
           <div className="overlayImg">
             <h3>{empleado.nombre}</h3>
             <p>{empleado.especialidad}</p>
-            <button className="btn-overlay">Ver Portafolio</button>
           </div>
         </div>
       ))}
