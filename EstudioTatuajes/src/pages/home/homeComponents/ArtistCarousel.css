@@ -23,6 +23,7 @@
     object-fit: cover;
     transition: opacity 0.3s ease; 
     border-radius: 0 !important;
+    filter: grayscale(100%);
 }  
 .overlayImg {
     position: absolute; 

@@ -23,6 +23,12 @@
       "nombre": "Carlos Ruiz",
       "especialidad": "Linework y Geometría",
       "imagen": "https://img.freepik.com/fotos-premium/chico-modelo-tatuajes-brazo-camiseta-negra_640207-14.jpg"
+    },
+    {
+      "id": 5,
+      "nombre": "Carla Diaz",
+      "especialidad": "Irezumi",
+      "imagen": "https://img.freepik.com/fotos-premium/imagen-mujer-tatuajes-brazos_869640-452544.jpg"
     }
   ],
   "proyectos": [
