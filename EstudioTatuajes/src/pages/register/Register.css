@@ -47,6 +47,7 @@
     margin-bottom: 15px;
     color: #fff;
     text-align: center;
+    font-family: "Playfair Display", serif;
   }
   
   .registerForm label {
@@ -56,6 +57,7 @@
     font-size: 14px;
     color: #fff;
     font-weight: bold;
+    font-family: "Playfair Display", serif;
   }
   
   .registerForm input {
@@ -88,9 +90,9 @@
   }
   
   .registerForm button:hover {
-    background-color: #202020;
-    color: #fff;
-    border: 1px solid #fff;
+    background-color: greenyellow;
+    color: black;
+    border: 1px solid greenyellow;
   }
   
   .swal2-dark {
