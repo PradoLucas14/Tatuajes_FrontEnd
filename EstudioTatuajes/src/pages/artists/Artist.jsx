@@ -9,10 +9,12 @@ function Artist() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDate, setSelectedDate] = useState('');
   const [loading, setLoading] = useState(true);
-  const [projectUrl, setProjectUrl] = useState(''); // Campo para la URL de imagen
-  const [isSubmitting, setIsSubmitting] = useState(false); // Estado de envío
+  const [projectUrl, setProjectUrl] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const rowsPerPage = 8; // Máximo de filas por página
 
-  const tatuadorName = localStorage.getItem('userName'); // Obtiene el nombre del tatuador logueado
+  const tatuadorName = localStorage.getItem('userName');
 
   useEffect(() => {
     const fetchReservations = async () => {
@@ -80,6 +82,7 @@ function Artist() {
     }
 
     setFilteredReservations(results);
+    setCurrentPage(1); // Reinicia a la primera página después de filtrar
   };
 
   const handleSubmitProject = async (e) => {
@@ -123,8 +126,41 @@ function Artist() {
     }
   };
 
+  // Calcula los datos paginados
+  const indexOfLastRow = currentPage * rowsPerPage;
+  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+  const currentRows = filteredReservations.slice(indexOfFirstRow, indexOfLastRow);
+  const totalPages = Math.ceil(filteredReservations.length / rowsPerPage);
+
+  const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <div className="artist-container-unique">
+      <div className="artist-project-form-unique">
+        <h3 className="artist-title-unique">Cargar Proyecto</h3>
+        <form onSubmit={handleSubmitProject} className="proyect-register-form mb-4">
+          <div className="form-group">
+            <input
+              type="url"
+              id="projectUrl"
+              className="artist-search-input-unique form-control"
+              placeholder="Ingrese la URL de la imagen"
+              value={projectUrl}
+              onChange={(e) => setProjectUrl(e.target.value)}
+              autoComplete="off"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="reception-submit"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? 'Cargando...' : 'Subir Proyecto'}
+          </button>
+        </form>
+      </div>
+
       <h2 className="artist-title-unique">Reservas pendientes asignadas</h2>
 
       <div className="artist-filters-unique">
@@ -145,57 +181,54 @@ function Artist() {
 
       {loading ? (
         <p className="artist-loading-unique text-center">Cargando reservas...</p>
-      ) : filteredReservations.length > 0 ? (
-        <table className="artist-table-unique table">
-          <thead>
-            <tr>
-              <th>Cliente</th>
-              <th>Fecha</th>
-              <th>Hora</th>
-              <th>Estado</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredReservations.map((reservation) => (
-              <tr key={reservation._id}>
-                <td>{reservation.cliente}</td>
-                <td>{reservation.fecha}</td>
-                <td>{reservation.hora}</td>
-                <td>{reservation.estado}</td>
+      ) : currentRows.length > 0 ? (
+        <>
+          <table className="artist-table-unique table">
+            <thead>
+              <tr>
+                <th>Cliente</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Estado</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {currentRows.map((reservation) => (
+                <tr key={reservation._id}>
+                  <td>{reservation.cliente}</td>
+                  <td>{reservation.fecha}</td>
+                  <td>{reservation.hora}</td>
+                  <td>{reservation.estado}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          <nav className="d-flex justify-content-center">
+            <ul className="pagination">
+              {Array.from({ length: totalPages }, (_, index) => (
+                <li
+                  key={index + 1}
+                  className={`page-item ${
+                    currentPage === index + 1 ? 'active' : ''
+                  }`}
+                >
+                  <button
+                    className="page-link"
+                    onClick={() => handlePageChange(index + 1)}
+                  >
+                    {index + 1}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </>
       ) : (
         <p className="artist-no-results-unique text-center">
           No hay reservas pendientes que coincidan con los filtros.
         </p>
       )}
-
-      <div className="artist-project-form-unique">
-        <h3 className="artist-project-title-unique">Cargar Proyecto</h3>
-        <form onSubmit={handleSubmitProject}>
-          <div className="form-group">
-            <label htmlFor="projectUrl">URL del proyecto</label>
-            <input
-              type="url"
-              id="projectUrl"
-              className="form-control"
-              placeholder="Ingrese la URL de la imagen"
-              value={projectUrl}
-              onChange={(e) => setProjectUrl(e.target.value)}
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            className="btn btn-primary"
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? 'Cargando...' : 'Subir Proyecto'}
-          </button>
-        </form>
-      </div>
     </div>
   );
 }
