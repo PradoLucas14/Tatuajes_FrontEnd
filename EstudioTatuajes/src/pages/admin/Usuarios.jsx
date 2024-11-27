@@ -1,27 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Asegúrate de importar Bootstrap
-import { Modal, Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "./Usuarios.css"
 
 function Usuarios() {
-  // Estado para el formulario de registro
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
     role: 'cliente',
-    claveDeAccion: '',
+    claveDeAccion: '1234',
   });
 
-  // Estado para los usuarios obtenidos
   const [users, setUsers] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [currentPage, setCurrentPage] = useState(1); // Página actual
+  const rowsPerPage = 10; // Máximo de filas por página
 
-  // Estado para controlar la visualización del modal de edición
-  const [showEditModal, setShowEditModal] = useState(false);
-  const [userToEdit, setUserToEdit] = useState(null); // Guardamos el usuario a editar
-
-  // Función para manejar los cambios en los campos del formulario
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -30,7 +26,6 @@ function Usuarios() {
     });
   };
 
-  // Función para obtener los usuarios registrados
   const fetchUsers = async () => {
     try {
       const token = localStorage.getItem('token');
@@ -49,7 +44,6 @@ function Usuarios() {
     }
   };
 
-  // Función para enviar el formulario de registro
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -71,7 +65,6 @@ function Usuarios() {
         text: `El usuario ${response.data.name} ha sido registrado exitosamente.`,
       });
 
-      // Limpiar el formulario después del registro
       setFormData({
         name: '',
         email: '',
@@ -80,7 +73,6 @@ function Usuarios() {
         claveDeAccion: '',
       });
 
-      // Recargar la lista de usuarios
       fetchUsers();
     } catch (error) {
       Swal.fire({
@@ -91,163 +83,84 @@ function Usuarios() {
     }
   };
 
-  const handleDelete = async (userId) => {
-    const token = localStorage.getItem('token'); // Obtén el token
-  
-    if (!token) {
-      return Swal.fire('Error', 'No tienes permisos para realizar esta acción', 'error');
-    }
-  
-    // Confirmación antes de eliminar
-    const result = await Swal.fire({
-      title: '¿Estás seguro?',
-      text: 'Esta acción no se puede deshacer',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Sí, eliminar',
-      cancelButtonText: 'Cancelar',
-    });
-  
-    if (result.isConfirmed) {
-      try {
-        // Realiza la solicitud DELETE con el token
-        await axios.delete(`http://localhost:5000/api/users/${userId}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        Swal.fire('Eliminado', 'El usuario ha sido eliminado', 'success');
-        // Aquí puedes actualizar la lista de usuarios
-      } catch (error) {
-        console.error(error);
-        Swal.fire('Error', 'Hubo un problema al eliminar el usuario', 'error');
-      }
-    }
-  };
-  
-
-  // Función para manejar la edición de un usuario
-  const handleEdit = (user) => {
-    setUserToEdit(user); // Guardar el usuario a editar
-    setShowEditModal(true); // Mostrar el modal
-  };
-
-  // Función para manejar el cambio de datos en el modal de edición
-  const handleEditChange = (e) => {
-    const { name, value } = e.target;
-    setUserToEdit({
-      ...userToEdit,
-      [name]: value,
-    });
-  };
-
-  //Función de edicion de datos de los usuarios
-  const handleEditSubmit = async (e) => {
-    e.preventDefault();
-    
-    // Obtener el token del localStorage
-    const token = localStorage.getItem('token'); 
-  
-    if (!token) {
-      return Swal.fire('Error', 'No tienes permisos para realizar esta acción', 'error');
-    }
-  
-    // Obtener los datos del formulario
-    const { name, email, password, role } = userToEdit;
-  
-    try {
-      // Realizar la solicitud PATCH para actualizar el usuario
-      const response = await axios.patch(
-        `http://localhost:5000/api/users/${userToEdit._id}`,
-        { name, email, password, role },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`, // Asegúrate de que el token esté en los encabezados
-          },
-        }
-      );
-  
-      Swal.fire('Exito', 'Usuario actualizado exitosamente', 'success');
-      setShowEditModal(false);
-      // Actualiza la lista de usuarios si es necesario
-    } catch (error) {
-      console.error(error);
-      if (error.response && error.response.status === 401) {
-        Swal.fire('Error', 'No autorizado. El token puede haber expirado', 'error');
-      } else {
-        Swal.fire('Error', 'Hubo un problema al actualizar el usuario', 'error');
-      }
-    }
-  };
-
-  // Cargar los usuarios cuando el componente se monte
   useEffect(() => {
     fetchUsers();
   }, []);
 
+  // Filtrar usuarios según el término de búsqueda
+  const filteredUsers = users.filter((user) =>
+    user.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  // Determinar los usuarios visibles en la página actual
+  const indexOfLastRow = currentPage * rowsPerPage;
+  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+  const currentRows = filteredUsers.slice(indexOfFirstRow, indexOfLastRow);
+
+  // Cambiar de página
+  const totalPages = Math.ceil(filteredUsers.length / rowsPerPage);
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
-    <div className="container mt-5">
-      <h2 className="text-center text-white mb-4">Registrar Nuevo Usuario</h2>
-      <form onSubmit={handleSubmit} className="bg-dark p-4 rounded">
+    <div className="container-usuarios">
+      <h2 className="usuar-title text-white mb-4">Registrar Nuevo Usuario</h2>
+      <form onSubmit={handleSubmit} className="reception-form">
         <div className="row">
           <div className="col-md-6">
             <div className="mb-3">
-              <label htmlFor="name" className="form-label text-white">
-                Nombre
-              </label>
+              <label htmlFor="name" className="form-label text-white">Nombre:</label>
               <input
                 type="text"
+                placeholder='Ingrese su nombre'
                 id="name"
                 name="name"
-                className="form-control"
+                className="form-control reception-input"
                 value={formData.name}
                 onChange={handleChange}
                 required
                 minLength="6"
+                autoComplete='off'
               />
             </div>
-
             <div className="mb-3">
-              <label htmlFor="email" className="form-label text-white">
-                Correo Electrónico
-              </label>
+              <label htmlFor="email" className="form-label text-white">Correo Electrónico:</label>
               <input
                 type="email"
+                placeholder='Ingrese su correo electronico'
                 id="email"
                 name="email"
-                className="form-control"
+                className="form-control reception-input"
                 value={formData.email}
                 onChange={handleChange}
                 required
+                autoComplete='off'
               />
             </div>
-
+          </div>
+          <div className="col-md-6">
             <div className="mb-3">
-              <label htmlFor="password" className="form-label text-white">
-                Contraseña
-              </label>
+              <label htmlFor="password" className="form-label text-white">Contraseña:</label>
               <input
                 type="password"
+                placeholder='Ingrese su contraseña'
                 id="password"
                 name="password"
-                className="form-control"
+                className="form-control reception-input"
                 value={formData.password}
                 onChange={handleChange}
                 required
                 minLength="6"
+                autoComplete='off'
               />
             </div>
-          </div>
-
-          <div className="col-md-6">
             <div className="mb-3">
-              <label htmlFor="role" className="form-label text-white">
-                Rol
-              </label>
+              <label htmlFor="role" className="form-label text-white">Rol:</label>
               <select
                 id="role"
                 name="role"
-                className="form-select"
+                className="form-select reception-input"
                 value={formData.role}
                 onChange={handleChange}
                 required
@@ -255,111 +168,63 @@ function Usuarios() {
                 <option value="cliente">Cliente</option>
                 <option value="tatuador">Tatuador</option>
                 <option value="recepcionista">Recepcionista</option>
-                <option value="administrador">Administrador</option>
               </select>
-            </div>
-
-            <div className="mb-3">
-              <label htmlFor="claveDeAccion" className="form-label text-white">
-                Clave de Acción
-              </label>
-              <input
-                type="text"
-                id="claveDeAccion"
-                name="claveDeAccion"
-                className="form-control"
-                value={formData.claveDeAccion}
-                onChange={handleChange}
-                required
-              />
             </div>
           </div>
         </div>
-
-        <button type="submit" className="btn btn-success w-100 mt-3">
-          Registrar
-        </button>
+        <button type="submit" className="reception-submit">Registrar</button>
       </form>
 
+      {/* Barra de búsqueda */}
+      <h3 className="usuar-title text-white mb-4 mt-5">Usuarios Registrados</h3>
+      <div className="input-group mb-3">
+        <input
+          type="text"
+          className="form-control reception-search-input"
+          placeholder="Buscar por nombre..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
+
       {/* Tabla de usuarios */}
-      <h3 className="text-white mt-5">Usuarios Registrados</h3>
-      <table className="table table-dark mt-4">
+      <table className="table table-dark reception-table mt-4">
         <thead>
           <tr>
             <th>Nombre</th>
             <th>Email</th>
             <th>Rol</th>
-            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
+          {currentRows.map((user) => (
             <tr key={user._id}>
               <td>{user.name}</td>
               <td>{user.email}</td>
               <td>{user.role}</td>
-              <td>
-                <button
-                  className="btn btn-warning"
-                  onClick={() => handleEdit(user)}
-                >
-                  Editar
-                </button>
-                <button
-                  className="btn btn-danger ms-2"
-                  onClick={() => handleDelete(user._id)}
-                >
-                  Eliminar
-                </button>
-              </td>
             </tr>
           ))}
         </tbody>
       </table>
 
-      {/* Modal de edición */}
-      <Modal show={showEditModal} onHide={() => setShowEditModal(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Editar Usuario</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <form onSubmit={handleEditSubmit}>
-            <div className="mb-3">
-              <label htmlFor="editName" className="form-label">
-                Nombre
-              </label>
-              <input
-                type="text"
-                id="editName"
-                name="name"
-                className="form-control"
-                value={userToEdit?.name || ''}
-                onChange={handleEditChange}
-                required
-              />
-            </div>
-
-            <div className="mb-3">
-              <label htmlFor="editPassword" className="form-label">
-                Contraseña
-              </label>
-              <input
-                type="password"
-                id="editPassword"
-                name="password"
-                className="form-control"
-                value={userToEdit?.password || ''}
-                onChange={handleEditChange}
-                required
-              />
-            </div>
-
-            <Button variant="primary" type="submit">
-              Guardar Cambios
-            </Button>
-          </form>
-        </Modal.Body>
-      </Modal>
+      {/* Paginación */}
+      <nav>
+        <ul className="pagination justify-content-center">
+          {[...Array(totalPages)].map((_, index) => (
+            <li
+              key={index}
+              className={`page-item ${currentPage === index + 1 ? 'active' : ''}`}
+            >
+              <button
+                className="page-link"
+                onClick={() => handlePageChange(index + 1)}
+              >
+                {index + 1}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </div>
   );
 }

@@ -66,7 +66,7 @@ function Login() {
           navigate('/recepcionista');
           break;
         case 'administrador':
-          navigate('/administrador');
+          navigate('/home');
           break;
         default:
           navigate('/');

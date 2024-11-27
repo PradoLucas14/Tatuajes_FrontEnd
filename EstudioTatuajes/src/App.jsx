@@ -36,6 +36,9 @@ function App() {
         <Route element={<PrivateRoute allowedRoles={['administrador']} />} >
           <Route path="/Usuarios" element={<Usuarios />} />
         </Route>
+        <Route element={<PrivateRoute allowedRoles={['administrador']} />} >
+          <Route path="/reservas" element={<Recepcionista />} />
+        </Route>
       </Routes>
     </Router>
   );
