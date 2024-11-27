@@ -6,7 +6,7 @@ import Login from './pages/login/Login';
 import Cliente from './pages/client/Client'; // Ruta del componente del cliente
 import Tatuador from './pages/artists/Artist'; // Ruta del componente del tatuador
 import Recepcionista from './pages/reception/Reception'; // Ruta del recepcionista
-import Administrador from './pages/admin/Admin'; // Ruta del administrador
+import Usuarios from './pages/admin/Usuarios'; // Ruta del administrador
 import PrivateRoute from '../PrivateRoute'; // Importa el componente PrivateRoute
 import NavBar from './layout/NavBar'; // Importa el componente NavBar
 import './App.css';
@@ -34,7 +34,7 @@ function App() {
           <Route path="/recepcionista" element={<Recepcionista />} />
         </Route>
         <Route element={<PrivateRoute allowedRoles={['administrador']} />} >
-          <Route path="/administrador" element={<Administrador />} />
+          <Route path="/Usuarios" element={<Usuarios />} />
         </Route>
       </Routes>
     </Router>

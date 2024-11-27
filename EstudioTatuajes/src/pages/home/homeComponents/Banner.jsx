@@ -16,7 +16,7 @@ function Banner() {
             MAGIA NEGRA.
           </h1>
           <p className="descripcionBanner">
-            Bienvenidos a nuestro estudio de tatuajes, donde la creatividad cobra vida en cada trazo. 
+            En nuestro estudio de tatuajes, donde la creatividad cobra vida en cada trazo. 
             Transformamos tus ideas en arte permanente, creando diseños únicos que cuentan tu historia a través de la piel. 
             ¡Descubre tu próximo tatuaje!
           </p>

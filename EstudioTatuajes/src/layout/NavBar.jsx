@@ -91,7 +91,7 @@ const NavBar = () => {
               <a className="nav-link" href="/galeria">Galería</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/usuarios">Usuarios</a>
+              <a className="nav-link" href="/Usuarios">Usuarios</a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/reservas">Reservas</a>
