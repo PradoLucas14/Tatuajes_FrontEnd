@@ -36,7 +36,7 @@ function PrivateRoute({ allowedRoles }) {
     return null; // No renderiza nada mientras se redirige
   }
 
-  return <Outlet />;
+  return <Outlet />; // Si el usuario está autenticado y tiene el rol adecuado, renderiza el contenido
 }
 
 export default PrivateRoute;

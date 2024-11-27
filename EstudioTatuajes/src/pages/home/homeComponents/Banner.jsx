@@ -13,7 +13,7 @@ function Banner() {
             Hola, somos el estudio
           </p>
           <h1>
-            Black Magic
+            MAGIA NEGRA.
           </h1>
           <p className="descripcionBanner">
             Bienvenidos a nuestro estudio de tatuajes, donde la creatividad cobra vida en cada trazo. 

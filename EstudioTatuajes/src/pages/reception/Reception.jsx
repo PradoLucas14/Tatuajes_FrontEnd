@@ -252,8 +252,6 @@ function Reception() {
 
   return (
     <div className="reception-container">
-      <h2 className="reception-title mb-4">Recepción</h2>
-
       <form onSubmit={handleSubmit} className="reception-form">
         <h3 className="form-reserv-title">Registrar reserva:</h3>
         {formError && <div className="reception-form-error alert alert-danger">{formError}</div>}

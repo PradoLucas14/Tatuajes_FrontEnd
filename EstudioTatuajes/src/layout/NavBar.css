@@ -1,0 +1,27 @@
+.navbar{
+    background-color: #101010 !important;
+    padding: 10px 8.3%;
+}
+.navbar-brand{
+    color: #fff !important;
+    font-family: "Playfair Display", serif;
+    font-weight: bold;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.imgNavBar{
+    height: 40px;
+    width: 40px;
+    margin-right: 5px;
+}
+.nav-link{
+    color: #fff !important;
+    font-family: "Playfair Display", serif;
+    font-weight: bold;
+    transition: 0.1s ease;
+}
+.nav-link:hover{
+    text-decoration: underline 2px;
+}

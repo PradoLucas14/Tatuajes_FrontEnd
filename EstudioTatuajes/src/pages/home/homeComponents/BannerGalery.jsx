@@ -72,7 +72,7 @@ const Carousel = () => {
           </Slider>
           <div className="btnGaleryContainer">
             <button className='bannerButton'>
-              <p>Ver más</p>
+                Ver más
             </button>
           </div>
         </div>

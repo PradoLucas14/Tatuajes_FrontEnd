@@ -54,7 +54,7 @@ function Login() {
         }
       });
 
-      // Redirección según el rol del usuario
+      // Redirección según el rol del usuario (la recarga manejará la navegación)
       switch (user.role) {
         case 'cliente':
           navigate('/cliente');
@@ -72,6 +72,9 @@ function Login() {
           navigate('/');
           break;
       }
+
+      // Forzar recarga de la página
+      window.location.reload(); // Aquí se recarga la página
 
       setFormData({ email: '', password: '' });
     } catch (error) {

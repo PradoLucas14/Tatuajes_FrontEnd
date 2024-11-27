@@ -41,6 +41,7 @@
   .contact-form h2{
     color: #fff;
     font-size: 36px;
+    font-family: "Playfair Display", serif;
   }
   .contact-form {
     display: flex;
@@ -54,14 +55,15 @@
   
   .contact-form label {
     margin-top: 10px;
-    color: #999;
+    color: #fff;
     font-weight: bold;
+    font-family: "Playfair Display", serif;
   }
   
   .contact-form input {
     margin-top: 5px;
     width: 100%;
-    width: 94% !important;
+    width: 100% !important;
     padding: 10px;
     border: 1px solid #fff;
     background-color: #353535;
@@ -77,7 +79,7 @@
     padding: 10px;
     margin-top: 5px;
     border: 1px solid #ccc;
-    width: 94%;    /* Ancho al 100% del contenedor */
+    width: 100%;    /* Ancho al 100% del contenedor */
     height: 200px;  /* Altura fija */
     resize: none;   /* Deshabilita la opción de redimensionar el textarea */
     overflow-y: auto;  /* Muestra scroll vertical si el contenido excede la altura */
@@ -102,9 +104,8 @@
 
   .contact-form button {
     padding: 10px;
-    background-color: #353535;
-    border: 1px solid #fff !important;
-    color: white;
+    background-color: #fff;
+    color: black;
     border: none;
     cursor: pointer;
     margin-top: 10px;
@@ -115,9 +116,8 @@
   }
   
   .contact-form button:hover {
-    background-color: #fff;
+    background-color: greenyellow;
     color: black;
-    border: 1px solid black;
   }
   @media screen and (max-width: 768px) {
     .contact-container {

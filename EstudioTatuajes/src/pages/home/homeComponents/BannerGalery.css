@@ -10,6 +10,7 @@
     width: 100%;
     height: 100%; /* Puedes ajustar la altura según tus necesidades */
     object-fit: cover; /* Esto asegura que las imágenes se ajusten bien dentro del contenedor */
+    filter: grayscale(100%);
 }
 
 .slick-slide {
@@ -31,6 +32,7 @@
     color: #fff;
     border-bottom: #fff 1px solid;
     display: inline-block;
+    font-family: "Playfair Display", serif;
 }
 .btnGaleryContainer{
     display: flex;
