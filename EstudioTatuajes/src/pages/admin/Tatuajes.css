@@ -1,0 +1,68 @@
+.tatuajes{
+    background-color: black;
+    padding: 100px 9%;
+    max-height: auto;
+    min-height: 100vh;
+}
+.card{
+    background-color: #404040;
+}
+.card-img-top{
+    border-radius: 0 !important;
+    border-bottom: 2px solid #fff;
+}
+.card-body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.card-title{
+    color: #fff;
+    font-family: "Playfair Display", serif;
+}
+.btn-info , .btn-danger , .btn{
+    border-radius: 0 !important;
+    margin: 5px;
+    font-family: "Playfair Display", serif;
+    font-weight: bold;
+}
+.columproyectos{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* Estilo oscuro para el modal */
+.dark-modal .modal-content {
+    background-color: #333; /* Fondo oscuro */
+    border-radius: 0; /* Eliminar los bordes redondeados */
+    border: none; /* Quitar el borde */
+  }
+  
+  /* Estilo para el encabezado del modal */
+  .dark-modal-header {
+    background-color: #444; /* Fondo del encabezado oscuro */
+    color: #fff; /* Color del texto en el encabezado */
+    border-radius: 0; /* Eliminar bordes redondeados */
+    border: none; /* Eliminar borde */
+  }
+  
+  /* Estilo para el pie de página del modal */
+  .dark-modal-footer {
+    background-color: #444; /* Fondo del pie de página oscuro */
+    color: #fff; /* Color del texto en el pie de página */
+    border-radius: 0; /* Eliminar bordes redondeados */
+    border: none; /* Eliminar borde */
+  }
+  
+  /* Botón Cerrar en el pie de página */
+  .dark-modal-footer .btn-secondary {
+    background-color: red; /* Fondo más oscuro para el botón */
+    border: none; /* Eliminar borde */
+  }
+  
+  /* Botón Cerrar en el pie de página al pasar el cursor */
+  .dark-modal-footer .btn-secondary:hover {
+    background-color: rgb(164, 11, 11); /* Fondo más oscuro al pasar el cursor */
+  }
+  

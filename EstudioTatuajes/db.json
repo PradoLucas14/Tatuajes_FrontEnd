@@ -29,6 +29,13 @@
       "nombre": "Carla Diaz",
       "especialidad": "Irezumi",
       "imagen": "https://img.freepik.com/fotos-premium/imagen-mujer-tatuajes-brazos_869640-452544.jpg"
+    },
+    {
+      "nombre": "Leonel Jaime",
+      "especialidad": "Tradicional",
+      "imagen": "https://media.ambito.com/p/e50c375ff3c7fc17236e3c90e6896b0e/adjuntos/239/imagenes/040/467/0040467185/730x0/smart/scott-campbelljpg.jpg",
+      "mail": "jaime@gmail.com",
+      "id": 6
     }
   ],
   "proyectos": [
@@ -96,6 +103,11 @@
       "name": "Carla Diaz",
       "image": "https://www.centralklinic.cl/wp-content/uploads/2024/06/tatuajes-blog.jpg",
       "id": 13
+    },
+    {
+      "name": "Leonel Jaime",
+      "image": "https://s.widget-club.com/images/YyiR86zpwIMIfrCZoSs4ulVD9RF3/df708a09f1e33bd6cb0f55e747a9a456/5f24b60833eb8d63544da16b8fc82b15.jpg?q=70&w=500",
+      "id": 14
     }
   ]
 }
