@@ -23,12 +23,19 @@ function Reception() {
   const [startDate, setStartDate] = useState(''); // Fecha de inicio del filtro
   const [endDate, setEndDate] = useState(''); // Fecha de fin del filtro
 
-
-  // Función para obtener las reservas desde la API
+  const formatDate = (date) => {
+    const formattedDate = new Date(date).toISOString().split('T')[0];
+    return formattedDate;
+  };
+// Función para obtener las reservas desde la API
   const fetchReservations = async () => {
     try {
       const response = await axios.get('http://localhost:5000/api/reservs');
-      setReservations(response.data); // Asumiendo que la API devuelve un array
+      const formattedReservations = response.data.map((reservation) => ({
+        ...reservation,
+        fecha: formatDate(reservation.fecha), // Formatear la fecha
+      }));
+      setReservations(formattedReservations); // Actualizar el estado con los datos formateados
     } catch (error) {
       console.error('Error fetching reservations:', error);
     } finally {

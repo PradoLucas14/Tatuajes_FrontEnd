@@ -11,13 +11,13 @@ import Usuarios from './pages/admin/Usuarios'; // Ruta del administrador
 import Tatuajes from './pages/admin/Tatuajes';
 import PrivateRoute from '../PrivateRoute'; // Importa el componente PrivateRoute
 import NavBar from './layout/NavBar'; // Importa el componente NavBar
+import Footer from './layout/Footer';
 import './App.css';
 
 function App() {
   return (
     <Router>
       <NavBar /> {/* Aquí agregamos el NavBar para que esté presente en todas las rutas */}
-
       <Routes>
         {/* Rutas públicas */}
         <Route path="/" element={<Home />} />
@@ -46,6 +46,7 @@ function App() {
           <Route path="/tatuajes" element={<Tatuajes />} />
         </Route>
       </Routes>
+      <Footer/>
     </Router>
   );
 }

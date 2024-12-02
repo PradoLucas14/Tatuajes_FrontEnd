@@ -7,6 +7,13 @@ const ClientReservations = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
+// Función para formatear fechas
+  const formatDate = (date) => {
+    const formattedDate = new Date(date).toISOString().split('T')[0];
+    return formattedDate;
+  };
+
+  // Función para obtener las reservas desde la API
   const fetchReservations = async () => {
     const userName = localStorage.getItem('userName'); // Tomar el nombre del usuario del localStorage
     if (!userName) {
@@ -17,9 +24,12 @@ const ClientReservations = () => {
 
     try {
       const response = await axios.get('http://localhost:5000/api/reservs');
-      const userReservations = response.data.filter(
-        (reservation) => reservation.cliente === userName
-      );
+      const userReservations = response.data
+        .filter((reservation) => reservation.cliente === userName)
+        .map((reservation) => ({
+          ...reservation,
+          fecha: formatDate(reservation.fecha), // Formatear la fecha
+        }));
       setReservations(userReservations);
     } catch (error) {
       console.error('Error fetching reservations:', error);
